@@ -9,7 +9,7 @@ function build($data, $counter)
         "children" => [
             array(
                 "type" => "text",
-                "value" => "{$counter->text}: {$data[0]->count}"
+                "value" => $counter["text"] . " : " . $data[0]["count"]
             ),
             array(
                 "type" => "button",
@@ -17,8 +17,7 @@ function build($data, $counter)
                 "onPressed" => array(
                     "action" => "increment",
                     "props" => array(
-                        "id" => $data[0]->_id,
-                        "datastore" => $data[0]->datastore
+                        "id" => $data[0]["_id"]
                     )
                 )
             )

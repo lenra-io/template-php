@@ -1,0 +1,25 @@
+componentsApi: "1.0"
+generator:
+  dofigen:
+    builders:
+      - name: builder
+        image: composer:latest
+        adds:
+          - "."
+        workdir: /app
+        script:
+          - composer
+    image: php:latest
+    envs:
+      LOG_LEVEL: debug
+    workdir: /app
+    artifacts:
+      - builder: builder
+        source: "/app"
+        destination: "/app/"
+    cmd:
+      - php
+      - -S
+      - 127.0.0.1:3000
+    ports:
+      - 3000
