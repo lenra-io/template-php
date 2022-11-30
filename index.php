@@ -22,19 +22,14 @@ $app->post('/function/{appUuid}', function (Request $request, Response $response
         $response->getBody()->write($image);
         return $response->withHeader('Content-Type', 'img/png');
     } elseif (isset($body["action"])) {
-        require $manifest["listeners"][$body["action"]];
+        require "./listeners/" . $body["action"] . ".php";
 
         $response->getBody()->write(json_encode(run($body["props"], $body["event"], $body["api"])));
         return $response->withHeader('Content-Type', 'application/json');
     } elseif (isset($body["widget"])) {
-        if (isset($manifest["widgets"][$body["widget"]])) {
-            require $manifest["widgets"][$body["widget"]];
-            $response->getBody()->write(json_encode(build($body["data"], $body["props"])));
-            return $response->withHeader('Content-Type', 'application/json');
-        } else {
-            $response->getBody()->write(json_encode("Error widget not found"));
-            return $response->withStatus(500);
-        }
+        require "./widgets/" . $body["widget"] . ".php";
+        $response->getBody()->write(json_encode(build($body["data"], $body["props"])));
+        return $response->withHeader('Content-Type', 'application/json');
     } else {
         $response->getBody()->write(json_encode(array("manifest" => $manifest)));
         return $response->withHeader('Content-Type', 'application/json');
