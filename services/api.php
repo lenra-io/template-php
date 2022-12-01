@@ -2,43 +2,34 @@
 function getDoc($api, $coll, $id)
 {
     $client = new \GuzzleHttp\Client();
-    // return axios . get(`${api . url}/app/colls/${coll}/docs/${id}`, options(api));
-    return $client->request('GET', $api["url"] . '/app/colls/' . $coll . '/docs/' . $id, ['headers' => ['Authorization' => 'Bearer ' . $api["token"]]]);
+    $result = $client->request('GET', $api["url"] . '/app/colls/' . $coll . '/docs/' . $id, ['headers' => ['Authorization' => 'Bearer ' . $api["token"]]]);
+    return json_decode($result->getBody(), true);
 }
 
 function createDoc($api, $coll, $doc)
 {
     $client = new \GuzzleHttp\Client();
-    // return axios . post(`${api . url}/app/colls/${coll}/docs`, doc, options(api));
-    return $client->request('POST', $api["url"] . '/app/colls/' . $coll . '/docs', ['headers' => ['Authorization' => 'Bearer ' . $api["token"]], GuzzleHttp\RequestOptions::JSON => $doc]);
+    $result =  $client->request('POST', $api["url"] . '/app/colls/' . $coll . '/docs', ['headers' => ['Authorization' => 'Bearer ' . $api["token"]], GuzzleHttp\RequestOptions::JSON => $doc]);
+    return json_decode($result->getBody(), true);
 }
 function updateDoc($api, $coll, $doc)
 {
     $client = new \GuzzleHttp\Client();
-    return $client->request('PUT', $api["url"] . '/app/colls/' . $coll . '/docs/' . $doc["_id"], ['headers' => ['Authorization' => 'Bearer ' . $api["token"]], GuzzleHttp\RequestOptions::JSON => $doc]);
-    // return axios . put(`${api . url}/app/colls/${coll}/docs/${doc . _id}`, doc, options(api));
+    $result = $client->request('PUT', $api["url"] . '/app/colls/' . $coll . '/docs/' . $doc["_id"], ['headers' => ['Authorization' => 'Bearer ' . $api["token"]], GuzzleHttp\RequestOptions::JSON => $doc]);
+    return json_decode($result->getBody(), true);
 }
 
 function deleteDoc($api, $coll, $doc)
 {
     $client = new \GuzzleHttp\Client();
-    return $client->request('DELETE', $api["url"] . '/app/colls/' . $coll . '/docs/' . $doc["_id"], ['headers' => ['Authorization' => 'Bearer ' . $api["token"]]]);
+    $result = $client->request('DELETE', $api["url"] . '/app/colls/' . $coll . '/docs/' . $doc["_id"], ['headers' => ['Authorization' => 'Bearer ' . $api["token"]]]);
+    return json_decode($result->getBody(), true);
     // return axios . delete(`${api . url}/app/colls/${coll}/docs/${doc . _id}`, options(api));
 }
 
 function executeQuery($api, $coll, $query)
 {
     $client = new \GuzzleHttp\Client();
-    return $client->request('POST', $api["url"] . '/app/colls/' . $coll . '/docs/find', ['headers' => ['Authorization' => 'Bearer ' . $api["token"]], GuzzleHttp\RequestOptions::JSON => $query]);
-    // return axios . post(`${api . url}/app/colls/${coll}/docs/find`, query, options(api));
-}
-
-function options($api)
-{
-    return ['headers' => headers($api)];
-}
-
-function headers($api)
-{
-    return ['Authorization' => 'Bearer ' . $api["token"]];
+    $result = $client->request('POST', $api["url"] . '/app/colls/' . $coll . '/docs/find', ['headers' => ['Authorization' => 'Bearer ' . $api["token"]], GuzzleHttp\RequestOptions::JSON => $query]);
+    return json_decode($result->getBody(), true);
 }

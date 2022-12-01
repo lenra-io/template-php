@@ -3,7 +3,6 @@
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
-use GuzzleHttp\Psr7\LazyOpenStream;
 
 require 'vendor/autoload.php';
 
@@ -20,7 +19,7 @@ $app->post('/function/{appUuid}', function (Request $request, Response $response
     if (isset($body["resource"])) {
         $image = file_get_contents('./resources/' . $body["resource"]);
         $response->getBody()->write($image);
-        return $response->withHeader('Content-Type', 'img/png');
+        return $response;
     } elseif (isset($body["action"])) {
         require "./listeners/" . $body["action"] . ".php";
 
