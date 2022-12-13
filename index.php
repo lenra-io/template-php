@@ -12,7 +12,7 @@ header("Content-Type: application/json");
 
 $app = AppFactory::create();
 
-$app->post('/function/{appUuid}', function (Request $request, Response $response, array $args) {
+$app->post('/{path:.*}', function (Request $request, Response $response, array $args) {
     global $manifest;
     $body = json_decode($request->getBody(), true);
 
