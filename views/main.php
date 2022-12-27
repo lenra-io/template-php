@@ -9,11 +9,11 @@ function build($data, $props)
         "crossAxisAlignment" => "center",
         "children" => [
             array(
-                "type" => "widget",
+                "type" => "view",
                 "name" => "menu",
             ),
             array(
-                "type" => "widget",
+                "type" => "view",
                 "name" => "home"
             )
         ]

@@ -9,7 +9,7 @@ function build($data, $counter)
         "crossAxisAlignment" => "center",
         "children" => [
             array(
-                "type" => "widget",
+                "type" => "view",
                 "name" => "counter",
                 "coll" => "counter",
                 "query" => array(
@@ -18,7 +18,7 @@ function build($data, $counter)
                 "props" => array("text" => "My personnal counter")
             ),
             array(
-                "type" => "widget",
+                "type" => "view",
                 "name" => "counter",
                 "coll" => "counter",
                 "query" => array(

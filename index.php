@@ -25,8 +25,8 @@ $app->post('/{path:.*}', function (Request $request, Response $response, array $
 
         $response->getBody()->write(json_encode(run($body["props"], $body["event"], $body["api"])));
         return $response->withHeader('Content-Type', 'application/json');
-    } elseif (isset($body["widget"])) {
-        require "./widgets/" . $body["widget"] . ".php";
+    } elseif (isset($body["view"])) {
+        require "./views/" . $body["view"] . ".php";
         $response->getBody()->write(json_encode(build($body["data"], $body["props"])));
         return $response->withHeader('Content-Type', 'application/json');
     } else {
