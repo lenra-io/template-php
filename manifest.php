@@ -1,5 +1,5 @@
 <?php
 
 $manifest = array(
-  "rootWidget" => "main"
+  "rootView" => "main"
 );

@@ -4,7 +4,7 @@ function build($data, $counter)
     return array(
         "type" => "flex",
         "direction" => "vertical",
-        "spacing" => 4,
+        "spacing" => 16,
         "mainAxisAlignment" => "spaceEvenly",
         "crossAxisAlignment" => "center",
         "children" => [

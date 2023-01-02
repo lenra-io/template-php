@@ -3,13 +3,13 @@ function build($data, $counter)
 {
     return array(
         "type" => "flex",
-        "spacing" => 2,
+        "spacing" => 16,
         "mainAxisAlignment" => "spaceEvenly",
         "crossAxisAlignment" => "center",
         "children" => [
             array(
                 "type" => "text",
-                "value" => $counter["text"] . " : " . $data[0]["count"]
+                "value" => $counter["text"] . ": " . $data[0]["count"]
             ),
             array(
                 "type" => "button",

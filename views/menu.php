@@ -15,17 +15,17 @@ function build($data, $props)
             ),
         ),
         "padding" => array(
-            "top" => 2,
-            "bottom" => 2,
-            "left" => 4,
-            "right" => 4,
+            "top" => 16,
+            "bottom" => 16,
+            "left" => 32,
+            "right" => 32,
         ),
         "child" => array(
             "type" => "flex",
             "fillParent" => true,
             "mainAxisAlignment" => "spaceBetween",
             "crossAxisAlignment" => "center",
-            "padding" => array("right" => 4),
+            "padding" => array("right" => 32),
             "children" => [
                 array(
                     "type" => "container",

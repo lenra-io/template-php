@@ -27,7 +27,7 @@ $app->post('/{path:.*}', function (Request $request, Response $response, array $
         return $response->withHeader('Content-Type', 'application/json');
     } elseif (isset($body["view"])) {
         require "./views/" . $body["view"] . ".php";
-        $response->getBody()->write(json_encode(build($body["data"], $body["props"])));
+        $response->getBody()->write(json_encode(build($body["data"] ?? [], $body["props"] ?? [])));
         return $response->withHeader('Content-Type', 'application/json');
     } else {
         $response->getBody()->write(json_encode(array("manifest" => $manifest)));
