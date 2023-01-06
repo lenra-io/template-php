@@ -7,8 +7,9 @@ generator:
         adds:
           - "."
         workdir: /app
-        script:
-          - composer i
+        root:
+          script:
+            - composer i
     image: php:latest
     envs:
       LOG_LEVEL: debug
