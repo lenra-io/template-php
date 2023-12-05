@@ -46,10 +46,10 @@ Installation instructions can be found here https://github.com/lenra-io/lenra_cl
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-To run the PHP template you can use the `dev` command that will build and start your app and enter in a custom terminal:
-
+To run the template just run:
 ```console
 lenra dev
+```
 
 You can then access the application by opening [`localhost:4000`](http://localhost:4000) on your web browser. 
 
