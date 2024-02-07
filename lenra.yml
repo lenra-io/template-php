@@ -1,0 +1,51 @@
+componentsApi: "1.0"
+generator:
+  dofigen:
+    builders:
+      - name: composer-install
+        from: composer
+        adds:
+          - "composer.json"
+          - "composer.lock"
+        run:
+          - composer install --prefer-dist --no-scripts --no-dev --no-autoloader --no-progress --no-interaction -o -a --apcu-autoloader
+        caches:
+          - /root/.composer
+      - name: install-extensions
+        from: php:8.3-cli-alpine
+        workdir: /app
+        root: 
+          run:
+            - apk add --no-cache --virtual .build-deps $PHPIZE_DEPS
+            - pecl install apcu
+            - docker-php-ext-enable apcu
+            - apk del .build-deps $PHPIZE_DEPS
+      - name: files
+        from: install-extensions
+        workdir: /app
+        adds:
+          - "."
+        root: 
+          run:
+            - mv /app/config/php.ini $PHP_INI_DIR/php.ini
+      - name: composer-autoload
+        from: composer-install
+        artifacts:
+          - builder: files
+            source: /app/src
+            destination: /app/src
+        run: 
+          - composer dump-autoload --optimize --classmap-authoritative --apcu
+    from: files
+    artifacts:
+      - builder: composer-autoload
+        source: /app/vendor
+        destination: /app/vendor
+    cmd:
+      - php
+      - src/index.php
+    ignores:
+      - "**"
+      - "!/src/"
+      - "!/composer.*"
+      - "!/config/"
