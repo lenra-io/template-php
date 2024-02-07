@@ -4,6 +4,9 @@
 -->
 
 
+Warning ! 
+This project have been archived and is no longer maintained.
+It acually works fine but we've replaced it by the [FrankenPHP template](https://github.com/lenra-io/template-franken-php) in order to provide a better experience to our users and improve application speed.
 
 <!-- PROJECT SHIELDS -->
 [![Contributors][contributors-shield]][contributors-url]
